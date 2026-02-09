@@ -1,65 +1,79 @@
-import Image from "next/image";
+import Link from "next/link";
+import { TerminalWindow } from "@/components/TerminalWindow";
+import { TypingEffect } from "@/components/TypingEffect";
+import { TerminalBlock } from "@/components/TerminalBlock";
+import { ProfileSection } from "@/components/ProfileSection";
+import { ArrowRight, Github } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-900/50 via-background to-background">
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+      <div className="z-10 w-full max-w-3xl space-y-12 text-center pt-20">
+        {/* Hero Headline */}
+        <div className="space-y-4">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight min-h-[4rem] text-transparent bg-clip-text bg-gradient-to-r from-neutral-100 to-neutral-400">
+            <span className="text-neon-green mr-2">&gt;</span>
+            <TypingEffect text="Initiating Space Black Protocol..." speed={70} />
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto">
+            Your intelligent, self-evolving terminal companion.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Terminal Install Block */}
+        <div className="mx-auto max-w-xl w-full text-left">
+          <TerminalWindow header="root@spaceblack: ~">
+            <div className="space-y-4">
+              <div>
+                <p className="opacity-70">Loading source modules...</p>
+                <p className="text-green-500">✔ GitHub Gateway connected</p>
+              </div>
+
+              <TerminalBlock>
+                {`# 1. Clone the repository
+$ git clone https://github.com/udaysagarm/SpaceBlack.git
+
+# 2. Enter the void
+$ cd SpaceBlack
+
+# 3. Install dependencies
+$ pip install -r requirements.txt
+
+# 4. Wake the agent
+$ python main.py`}
+              </TerminalBlock>
+            </div>
+          </TerminalWindow>
         </div>
-      </main>
-    </div>
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/docs"
+            className="group flex items-center justify-center gap-2 rounded-lg bg-neon-green px-6 py-3 text-sm font-semibold text-black transition-all hover:bg-neon-green/90 hover:shadow-[0_0_20px_-5px_var(--neon-green)]"
+          >
+            Read the Docs
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+
+          <Link
+            href="https://github.com/udaysagarm/SpaceBlack"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 rounded-lg border border-neutral-800 bg-black px-6 py-3 text-sm font-semibold text-neutral-300 transition-all hover:border-neutral-700 hover:text-white"
+          >
+            <Github className="h-4 w-4" />
+            View on GitHub
+          </Link>
+        </div>
+      </div>
+
+      {/* Profile Section */}
+      <ProfileSection />
+    </main>
   );
 }
