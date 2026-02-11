@@ -38,4 +38,19 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+
+# Backups
+docs_backup/
+
+# Python / Virtual Environments
+.venv/
+venv/
+__pycache__/
+
+# Space Black Memory (Personal Data)
+brain/USER.md
+brain/memory/
+
+# IDEs
+.vscode/
+.idea/
