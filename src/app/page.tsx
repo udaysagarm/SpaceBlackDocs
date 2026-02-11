@@ -8,9 +8,11 @@ import { ProfileSection } from "@/components/ProfileSection";
 import { ArrowRight, Github } from "lucide-react";
 import { useState } from "react";
 import { clsx } from "clsx";
+import { FloatingStars } from "@/components/FloatingStars";
 
 export default function Home() {
   const [os, setOs] = useState<"mac" | "windows">("mac");
+  const [showStars, setShowStars] = useState(true);
 
   const macCommands = `# 1. Clone the repository
 $ git clone https://github.com/udaysagar/SpaceBlack.git
@@ -117,8 +119,22 @@ $ spaceblack start`;
             <Github className="h-4 w-4" />
             View on GitHub
           </Link>
+
+          <button
+            onClick={() => setShowStars(!showStars)}
+            className={clsx(
+              "flex items-center justify-center gap-2 rounded-lg border px-6 py-3 text-sm font-semibold transition-all hover:bg-neutral-800",
+              showStars
+                ? "border-neon-green text-neon-green shadow-[0_0_15px_-3px_var(--neon-green)]"
+                : "border-neutral-800 text-neutral-300 hover:border-neutral-700 hover:text-white"
+            )}
+          >
+            Feel like stars
+          </button>
         </div>
       </div>
+
+      {showStars && <FloatingStars />}
 
       {/* Profile Section */}
       <ProfileSection />

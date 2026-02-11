@@ -86,4 +86,3 @@ When someone clones your code, they will need to set it up.
     ```
 
 The agent will automatically create a fresh `USER.md` for them!
-

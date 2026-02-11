@@ -19,44 +19,41 @@ git clone https://github.com/udaysagar/SpaceBlack.git
 cd SpaceBlack
 ```
 
-### 2. Create a Virtual Environment (Recommended)
-Isolate dependencies to avoid conflicts.
+### 2. Run Setup Script (Recommended)
+We provide a helper script to automate environment creation and dependency installation.
+
+**Mac/Linux:**
 ```bash
-# Mac/Linux
-python3 -m venv venv
-source venv/bin/activate
-
-# Windows (PowerShell)
-python -m venv venv
-.\venv\Scripts\Activate
+./spaceblack onboard
 ```
 
-### 3. Install Dependencies
+**Windows (PowerShell):**
+```powershell
+spaceblack onboard
+```
+
+### 3. Verification
+The script will install dependencies and create a `.venv` directory.
+You can verify it worked by starting the app:
 ```bash
-pip install -r requirements.txt
-```
-*Dependencies include `textual`, `langchain`, `langgraph`, `google-generativeai`, `openai`, `anthropic`, etc.*
-
-### 4. Setup API Keys
-The application needs API keys to function. On first run, it will look for a `.env` file.
-
-You can copy the example or create one manually:
-```bash
-touch .env
-```
-Open `.env` in your editor and add:
-```ini
-# Primary AI Provider (Choose at least one)
-GOOGLE_API_KEY=your_gemini_key
-OPENAI_API_KEY=your_openai_key
-ANTHROPIC_API_KEY=your_anthropic_key
-
-# Web Search (Recommended for live info)
-BRAVE_API_KEY=your_brave_search_key
+./spaceblack start
 ```
 
-### 5. Run the Application
-```bash
-python main.py
-```
-You should see the Terminal User Interface (TUI) launch!
+### Manual Setup (Advanced)
+If you prefer setting up manually or the script fails:
+
+1.  **Create Environment**:
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+
+2.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Run**:
+    ```bash
+    python main.py
+    ```
