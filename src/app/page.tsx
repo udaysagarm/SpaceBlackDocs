@@ -1,11 +1,41 @@
+"use client";
+
 import Link from "next/link";
 import { TerminalWindow } from "@/components/TerminalWindow";
 import { TypingEffect } from "@/components/TypingEffect";
 import { TerminalBlock } from "@/components/TerminalBlock";
 import { ProfileSection } from "@/components/ProfileSection";
 import { ArrowRight, Github } from "lucide-react";
+import { useState } from "react";
+import { clsx } from "clsx";
 
 export default function Home() {
+  const [os, setOs] = useState<"mac" | "windows">("mac");
+
+  const macCommands = `# 1. Clone the repository
+$ git clone https://github.com/udaysagar/SpaceBlack.git
+
+# 2. Enter the void
+$ cd SpaceBlack
+
+# 3. First Time Setup (Run Once)
+$ ./spaceblack onboard
+
+# 4. Daily Usage
+$ ./spaceblack start`;
+
+  const windowsCommands = `# 1. Clone the repository
+$ git clone https://github.com/udaysagar/SpaceBlack.git
+
+# 2. Enter the void
+$ cd SpaceBlack
+
+# 3. First Time Setup (Run Once)
+$ spaceblack onboard
+
+# 4. Daily Usage
+$ spaceblack start`;
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-900/50 via-background to-background">
       {/* Grid Pattern Background */}
@@ -26,7 +56,35 @@ export default function Home() {
 
         {/* Terminal Install Block */}
         <div className="mx-auto max-w-xl w-full text-left">
-          <TerminalWindow header="root@spaceblack: ~">
+          <TerminalWindow
+            header={
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setOs("mac")}
+                  className={clsx(
+                    "px-2 py-0.5 rounded text-xs transition-colors",
+                    os === "mac"
+                      ? "bg-neutral-800 text-neon-green font-bold"
+                      : "text-neutral-500 hover:text-neutral-300"
+                  )}
+                >
+                  Mac/Linux
+                </button>
+                <div className="w-[1px] bg-neutral-800 h-4" />
+                <button
+                  onClick={() => setOs("windows")}
+                  className={clsx(
+                    "px-2 py-0.5 rounded text-xs transition-colors",
+                    os === "windows"
+                      ? "bg-neutral-800 text-neon-green font-bold"
+                      : "text-neutral-500 hover:text-neutral-300"
+                  )}
+                >
+                  Windows
+                </button>
+              </div>
+            }
+          >
             <div className="space-y-4">
               <div>
                 <p className="opacity-70">Loading source modules...</p>
@@ -34,17 +92,7 @@ export default function Home() {
               </div>
 
               <TerminalBlock>
-                {`# 1. Clone the repository
-$ git clone https://github.com/udaysagarm/SpaceBlack.git
-
-# 2. Enter the void
-$ cd SpaceBlack
-
-# 3. Install dependencies
-$ pip install -r requirements.txt
-
-# 4. Wake the agent
-$ python main.py`}
+                {os === "mac" ? macCommands : windowsCommands}
               </TerminalBlock>
             </div>
           </TerminalWindow>

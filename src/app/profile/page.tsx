@@ -24,7 +24,7 @@ export default function ProfilePage() {
                 </header>
 
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <AsciiCard title="GitHub" href="https://github.com/udaysagar">
+                    <AsciiCard title="GitHub" href="https://github.com/udaysagarm">
                         <span className="text-neutral-500">handle:</span> @udaysagar <br />
                         <span className="text-neon-green">&gt;</span> 50+ Repositories <br />
                         <span className="text-neon-green">&gt;</span> Open Source Contributor

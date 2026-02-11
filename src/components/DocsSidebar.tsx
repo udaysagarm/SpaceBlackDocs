@@ -5,25 +5,22 @@ import { usePathname } from 'next/navigation';
 
 const navItems = [
     {
+        title: 'Introduction',
+        items: [
+            { title: 'Overview', href: '/docs/introduction' },
+        ],
+    },
+    {
         title: 'Getting Started',
         items: [
-            { title: 'Installation', href: '/docs/getting-started' },
-            { title: 'Configuration', href: '/docs/configuration' },
+            { title: 'Installation', href: '/docs/installation' },
+            { title: 'Usage Guide', href: '/docs/usage' },
         ],
     },
     {
         title: 'Core Concepts',
         items: [
-            { title: 'The Soul', href: '/docs/soul' },
-            { title: 'The Memory', href: '/docs/memory' },
-            { title: 'Agents', href: '/docs/agents' },
-        ],
-    },
-    {
-        title: 'Advanced',
-        items: [
-            { title: 'Tools', href: '/docs/tools' },
-            { title: 'Heartbeat', href: '/docs/heartbeat' },
+            { title: 'Architecture', href: '/docs/architecture' },
         ],
     },
 ];
