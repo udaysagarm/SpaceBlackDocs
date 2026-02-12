@@ -15,7 +15,7 @@ export default function Home() {
   const [showStars, setShowStars] = useState(true);
 
   const macCommands = `# 1. Clone the repository
-$ git clone https://github.com/udaysagar/SpaceBlack.git
+$ git clone https://github.com/udaysagarm/SpaceBlack.git
 
 # 2. Enter the void
 $ cd SpaceBlack
@@ -27,7 +27,7 @@ $ ./spaceblack onboard
 $ ./spaceblack start`;
 
   const windowsCommands = `# 1. Clone the repository
-$ git clone https://github.com/udaysagar/SpaceBlack.git
+$ git clone https://github.com/udaysagarm/SpaceBlack.git
 
 # 2. Enter the void
 $ cd SpaceBlack

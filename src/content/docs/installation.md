@@ -1,59 +1,60 @@
 # Installation Guide
 
-Follow these steps to get Space Black up and running on your machine.
+Follow these steps to install and configure Space Black on your system.
 
 ## Prerequisites
 
--   **Python 3.10+**: Ensure you have a modern version of Python installed.
--   **Git**: To clone the repository.
+-   **Python 3.10 or higher**: Ensure you have a modern version of Python installed.
+-   **Git**: Required to clone the repository.
 -   **Terminal**: 
     -   **Windows**: Recommended to use PowerShell or Windows Terminal.
-    -   **Mac/Linux**: Default terminal is fine. Nerd Fonts recommended for best experience.
+    -   **Mac/Linux**: Default terminal is sufficient. Nerd Fonts are recommended for the best experience.
 
-## Step-by-Step Setup
+## Installation Steps
 
 ### 1. Clone the Repository
 Open your terminal and run:
 ```bash
-git clone https://github.com/udaysagar/SpaceBlack.git
+git clone https://github.com/udaysagarm/SpaceBlack.git
 cd SpaceBlack
 ```
 
-### 2. Run Setup Script (Recommended)
-We provide a helper script to automate environment creation and dependency installation.
+### 2. Run Setup
+We provide a unified wrapper script to handle environment creation and dependency installation.
 
-**Mac/Linux:**
-```bash
+```install-tabs
+[MAC]
 ./spaceblack onboard
-```
 
-**Windows (PowerShell):**
-```powershell
+[WINDOWS]
 spaceblack onboard
 ```
 
-### 3. Verification
-The script will install dependencies and create a `.venv` directory.
-You can verify it worked by starting the app:
-```bash
+The script will:
+1.  Create a virtual environment (`.venv`).
+2.  Install dependencies from `requirements.txt`.
+3.  Launch the configuration wizard.
+
+### 3. Start the Agent
+Once installed, start the application using the same wrapper:
+
+```install-tabs
+[MAC]
 ./spaceblack start
+
+[WINDOWS]
+spaceblack start
 ```
 
-### Manual Setup (Advanced)
-If you prefer setting up manually or the script fails:
+## Manual Configuration (Advanced)
 
-1.  **Create Environment**:
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
+If you prefer to configure the application manually, you can create the `.env` file yourself in the project root:
 
-2.  **Install Dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
+```tex
+GOOGLE_API_KEY=your_key_here
+OPENAI_API_KEY=your_key_here
+ANTHROPIC_API_KEY=your_key_here
+BRAVE_API_KEY=your_key_here  # Optional
+```
 
-3.  **Run**:
-    ```bash
-    python main.py
-    ```
+Once the `.env` file is created, running `python main.py` will skip the wizard and launch the TUI directly.

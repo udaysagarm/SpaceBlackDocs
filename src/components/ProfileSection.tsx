@@ -30,7 +30,9 @@ export function ProfileSection() {
                             </div>
 
                             <div className="flex flex-wrap gap-4 pt-4">
-                                <SocialLink href="https://github.com/udaysagarm" icon={<Github className="w-5 h-5" />} label="GitHub" />
+                                <a href="https://github.com/udaysagarm" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors">
+                                    @udaysagarm
+                                </a>
                                 <SocialLink href="https://www.linkedin.com/in/udaymeka/" icon={<Linkedin className="w-5 h-5" />} label="LinkedIn" />
                                 <SocialLink href="https://instagram.com/imsagaruday" icon={<Instagram className="w-5 h-5" />} label="Instagram" />
                                 <SocialLink href="https://www.udaysagar.com" icon={<Globe className="w-5 h-5" />} label="Website" />
