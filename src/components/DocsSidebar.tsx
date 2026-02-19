@@ -22,6 +22,7 @@ const navItems = [
         items: [
             { title: 'Core Tools', href: '/docs/tools' },
             { title: 'Modular Skills', href: '/docs/skills' },
+            { title: 'Autonomous Browsing', href: '/docs/browsing' },
         ],
     },
     {

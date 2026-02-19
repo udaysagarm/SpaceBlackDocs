@@ -9,8 +9,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Space Black | AI Agent",
-  description: "Space Black: A self-evolving, terminal-based AI agent.",
+  title: "Space Black | Infrastructure for AI",
+  description: "Space Black: The terminal operating system for autonomous agents.",
 };
 
 export default function RootLayout({

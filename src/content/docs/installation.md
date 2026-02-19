@@ -15,18 +15,20 @@ Follow these steps to install and configure Space Black on your system.
 ### 1. Clone the Repository
 Open your terminal and run:
 ```bash
-git clone https://github.com/udaysagarm/SpaceBlack.git
+git clone https://github.com/udaysagar/SpaceBlack.git
 cd SpaceBlack
 ```
 
 ### 2. Run Setup
 We provide a unified wrapper script to handle environment creation and dependency installation.
 
-```install-tabs
-[MAC]
+**Mac/Linux**
+```bash
 ./spaceblack onboard
+```
 
-[WINDOWS]
+**Windows (PowerShell)**
+```powershell
 spaceblack onboard
 ```
 
@@ -38,11 +40,13 @@ The script will:
 ### 3. Start the Agent
 Once installed, start the application using the same wrapper:
 
-```install-tabs
-[MAC]
+**Mac/Linux**
+```bash
 ./spaceblack start
+```
 
-[WINDOWS]
+**Windows**
+```powershell
 spaceblack start
 ```
 

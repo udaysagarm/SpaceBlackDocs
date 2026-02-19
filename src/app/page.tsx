@@ -48,11 +48,13 @@ $ spaceblack start`;
         <div className="space-y-4">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight min-h-[4rem] text-transparent bg-clip-text bg-gradient-to-r from-neutral-100 to-neutral-400">
             <span className="text-neon-green mr-2">&gt;</span>
-            <TypingEffect text="Initiating Space Black Protocol..." speed={70} />
+            <TypingEffect text="Initiating Space Black Infrastructure..." speed={70} />
           </h1>
 
           <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto">
-            Your intelligent, self-evolving terminal companion.
+            The terminal operating system for autonomous agents.
+            <br className="hidden md:inline" />{" "}
+            <span className="text-neutral-500">Space Black is the void. Ghost is the agent.</span>
           </p>
         </div>
 

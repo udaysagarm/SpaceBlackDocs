@@ -1,45 +1,56 @@
-# Architecture & Technology Stack
+# Architecture Reference
 
-Space Black is designed as a **Local-First, Terminal-Native Agent**. It operates entirely on the host machine, ensuring data privacy and a responsive workflow.
+## Concept: Infrastructure vs. Agent
+**Space Black** is the host infrastructure (Body). **Ghost** is the autonomous agent (Mind).
 
-## Technology Stack
+## Core Components
 
-### Frontend (TUI)
--   **Textual**: A Python framework for creating sophisticated TUI applications. It provides CSS-like styling, widgets, and event handling within the terminal.
--   **AsyncIO**: The UI is fully asynchronous, preventing the interface from freezing during computation.
+### 1. The Brain (`brain/`)
+Ghost's state is strictly file-based.
+- **`SOUL.md`**: System Prompt (Ghost's Personality & Instructions).
+- **`MEMORY.md`**: Long-term semantic memory.
+- **`USER.md`**: Profile of you (the user).
+- **`SCHEDULE.json`**: Pending tasks.
+- **`HEARTBEAT.md`**: Background loop instructions.
+- **`vault/`**: Secure storage for browser sessions and secrets.
 
-### Backend (AI Logic)
--   **LangGraph**: Manages the agent's state machine (cyclic graph). This allows for complex workflows (e.g., "Thought -> Tool Call -> Result -> Thought").
--   **LangChain**: Provides the standardized interface for different LLM providers (Google, OpenAI, Anthropic).
--   **Tools**: Custom Python functions decorated with `@tool` that the LLM can invoke (File I/O, Web Search, System Commands).
+### 2. The Agent Logic (`agent.py`)
+This is the "Ghost" implementation.
+- Built with **LangGraph**.
+- Uses a **ReAct** loop (Reason → Act → Observe).
+- Dynamically loads tools from `tools/` based on `config.json`.
 
-### Memory System
-Space Black uses **Markdown Files** as its database. This design choice prioritizes transparency and portability.
--   **Transparency**: Users can read and edit the agent's memory with any text editor.
--   **Portability**: Easy to sync via Git or Dropbox.
+### 3. The Interfaces (Space Black)
+a. **TUI (`tui.py`)**:
+   - The visual terminal interface.
+   - Connects user input to `agent.py`.
 
-#### Core Files
--   `brain/memory/YYYY-MM-DD.md`: Daily logs. The agent writes thoughts and actions here.
--   `brain/SOUL.md`: The "System Prompt" that defines the persona.
--   `brain/USER.md`: Structured facts about the user.
+b. **Daemon (`daemon.py`)**:
+   - Headless runner.
+   - Executes the `run_autonomous_heartbeat()` loop.
+   - Listens for remote events (Telegram).
 
-## Design Philosophy
-1.  **Unix Philosophy**: Operates in the shell, works with text streams, and respects standard IO.
-2.  **Cross-Platform**: Uses `platform` detection to adapt commands for Windows (PowerShell) vs. Mac/Linux (Bash).
-3.  **Privacy**: No telemetry. Keys live in `.env`. Memory lives in `brain/`.
+### 4. Tool System (`tools/`)
+The capabilities Space Black provides to Ghost.
+- **Native Tools**: File I/O, System info.
+- **Skills**: Modular integrations (Weather, Telegram).
+- **Browser Engine**: The autonomous browsing capability.
 
-## Directory Structure
-```
-.
-├── main.py              # Application Entry Point
-├── tui.py               # Textual UI Implementation
-├── agent.py             # LangGraph State Machine
-├── tools/               # Agent Capabilities
-│   ├── skills/          # Modular Integrations (Telegram, Weather)
-│   └── ...              # Core Tools (Search, System)
-├── brain/               # Persistent Storage
-│   ├── memory/          # Daily Logs
-│   ├── SOUL.md          # Personality Definition
-│   └── AGENTS.md        # System Directives
-└── docs/                # Documentation
-```
+### 5. Autonomous Browser Engine
+Space Black provides a persistent browser environment for Ghost.
+- **Vision**: **Chrome DevTools Protocol (CDP)** fetches the Accessibility Tree.
+- **Action**: **Playwright** handles interactions.
+- **Persistence**: Session state (cookies, local storage) saved in `brain/vault/`.
+See [**BROWSING.md**](docs/BROWSING.md) for details.
+
+---
+
+## Data Flow
+
+1. **User Input** (TUI or Telegram) → **Space Black**
+2. **Space Black** passes input to **Ghost (Agent Graph)**
+3. **Ghost** reads `brain/` files for context.
+4. **Ghost** decides to use a Tool (e.g., Browser).
+5. **Tool** executes via **Space Black Infrastructure**.
+6. **Ghost** observes result and generates response.
+7. **Response** sent back to User via TUI.
