@@ -1,33 +1,36 @@
 import Link from "next/link";
 import {
-    ArrowLeft, Github, CreditCard, MessageSquare,
-    Monitor, Mail, Terminal, Globe, Send,
-    Lock, Search, Folder, Clock, Brain, Cloud
+    ArrowLeft, Terminal, Lock, Search, Folder, Clock, Brain, Cloud
 } from "lucide-react";
+import { SiGithub, SiStripe, SiGoogle, SiTelegram, SiDiscord, SiApple } from "react-icons/si";
+import { PlaywrightLogo } from "../../components/icons/PlaywrightLogo";
+import { BraveLogo } from "../../components/icons/BraveLogo";
+import { DuckDuckGoLogo } from "../../components/icons/DuckDuckGoLogo";
+import { SlackLogo } from "../../components/icons/SlackLogo";
 
 export default function SkillsPage() {
     const categories = [
         {
-            title: "Category 1: Developer & Founder Platforms",
+            title: "Developer & Founder Platforms",
             description: "These are the heavy-hitting integrations that make Space Black a true OS rather than just a chatbot.",
             skills: [
                 {
                     name: "GitHub Gateway",
-                    icon: <Github className="w-6 h-6 text-white" />,
+                    icon: <SiGithub className="w-6 h-6 text-white" />,
                     description: "Natively read repository issues, create branches, and push commits fully autonomously.",
                     config: "Requires GITHUB_TOKEN in .env",
                     docs: "/docs/skills#github"
                 },
                 {
                     name: "Stripe Billing",
-                    icon: <CreditCard className="w-6 h-6 text-[#635BFF]" />,
+                    icon: <SiStripe className="w-6 h-6 text-[#635BFF]" />,
                     description: "Manage customers, check balances, list prices, and generate checkout session links directly from the CLI.",
                     config: "Requires STRIPE_SECRET_KEY in .env",
                     docs: "/docs/skills#stripe"
                 },
                 {
                     name: "Google Workspace",
-                    icon: <Mail className="w-6 h-6 text-blue-400" />,
+                    icon: <SiGoogle className="w-5 h-5 text-white" />,
                     description: "Deep OAuth2 integration to read Gmail, manage Google Calendar, search Google Drive, and edit Docs/Sheets.",
                     config: "Requires Google OAuth Credentials",
                     docs: "/docs/skills#google"
@@ -35,32 +38,40 @@ export default function SkillsPage() {
             ]
         },
         {
-            title: "Category 2: Communication & Remote Control",
+            title: "Communication & Remote Control",
             description: "Tools for talking to Ghost when you are away from your terminal.",
             skills: [
                 {
                     name: "Telegram Gateway",
-                    icon: <Send className="w-6 h-6 text-[#0088cc]" />,
+                    icon: <SiTelegram className="w-6 h-6 text-[#26A5E4]" />,
                     description: "A secure, allow-listed bot that lets you message your background Daemon to execute tasks remotely from your phone.",
                     config: "Requires Telegram Bot Token",
                     docs: "/docs/skills#telegram"
                 },
                 {
                     name: "Discord Community Manager",
-                    icon: <MessageSquare className="w-6 h-6 text-[#5865F2]" />,
+                    icon: <SiDiscord className="w-6 h-6 text-[#5865F2]" />,
                     description: "Run a background bot to summarize channels, send DMs, and manage server roles.",
                     config: "Requires Discord Bot Token",
                     docs: "/docs/skills#discord"
+                },
+                {
+                    name: "Slack Integration",
+                    icon: <SlackLogo className="w-6 h-6" />,
+                    description: "Read messages, post updates, and respond to mentions in your Slack workspaces.",
+                    config: "Requires Slack Bot Token",
+                    docs: "/docs/skills#slack",
+                    badge: "beta"
                 }
             ]
         },
         {
-            title: "Category 3: Autonomous Web & Research",
+            title: "Autonomous Web & Research",
             description: "Engines that allow Ghost to parse, navigate, and search the open web.",
             skills: [
                 {
                     name: "Agentic Browsing Engine",
-                    icon: <Globe className="w-6 h-6 text-amber-500" />,
+                    icon: <PlaywrightLogo className="w-6 h-6" />,
                     description: "Uses the Chrome DevTools Protocol (CDP) and Playwright to see and interact with modern, dynamic websites.",
                     config: "Built-in (Requires Playwright)",
                     docs: "/docs/skills#browsing"
@@ -70,11 +81,15 @@ export default function SkillsPage() {
                     icon: <Lock className="w-6 h-6 text-emerald-400" />,
                     description: "Uses your OS's native keychain to securely store and retrieve login credentials for autonomous web sessions.",
                     config: "Built-in",
-                    docs: "/docs/skills#vault"
+                    docs: "/docs/skills#vault",
+                    badge: "beta"
                 },
                 {
                     name: "Web Search Engine",
-                    icon: <Search className="w-6 h-6 text-teal-400" />,
+                    icon: [
+                        <BraveLogo key="brave" className="w-8 h-8" />,
+                        <DuckDuckGoLogo key="ddg" className="w-8 h-8" />
+                    ],
                     description: "Quick information retrieval using the Brave Search or DuckDuckGo APIs.",
                     config: "Requires Search API Key",
                     docs: "/docs/skills#search"
@@ -82,12 +97,12 @@ export default function SkillsPage() {
             ]
         },
         {
-            title: "Category 4: Local OS & Infrastructure",
+            title: "Local OS & Infrastructure",
             description: "Core modules to control your local development environment.",
             skills: [
                 {
                     name: "macOS Native Control",
-                    icon: <Monitor className="w-6 h-6 text-neutral-300" />,
+                    icon: <SiApple className="w-6 h-6 text-neutral-300" />,
                     description: "Uses secure AppleScript to natively control Apple Mail, Calendar, Notes, Reminders, Finder, and system settings.",
                     config: "Built-in (macOS only)",
                     docs: "/docs/skills#macos"
@@ -109,7 +124,7 @@ export default function SkillsPage() {
             ]
         },
         {
-            title: "Category 5: The \"Brain\" Utilities",
+            title: "The \"Brain\" Utilities",
             description: "Background processing and core memory capabilities.",
             skills: [
                 {
@@ -149,7 +164,7 @@ export default function SkillsPage() {
                         <span className="text-neon-green mr-2">$</span>ls ./plugins
                     </h1>
                     <p className="text-lg text-neutral-400 max-w-2xl">
-                        Space Black's power comes from its modular architecture. Here are the official integrations that elevate Ghost from a simple chatbot to a full-blown autonomous operating system.
+                        Space Black&apos;s power comes from its modular architecture. Here are the official integrations that elevate Ghost from a simple chatbot to a full-blown autonomous operating system.
                     </p>
                 </div>
 
@@ -165,10 +180,31 @@ export default function SkillsPage() {
                                 {category.skills.map((skill) => (
                                     <div key={skill.name} className="flex flex-col p-6 rounded-xl border border-white/10 bg-neutral-950 hover:-translate-y-1 hover:border-neon-green/50 hover:shadow-[0_0_15px_-3px_var(--neon-green)] transition-all duration-300 group relative overflow-hidden">
                                         <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                                        <div className="relative z-10 flex-1 flex flex-col">
-                                            <div className="w-10 h-10 rounded-lg bg-neutral-900 flex items-center justify-center border border-white/10 mb-5 group-hover:scale-110 transition-transform duration-300">
-                                                {skill.icon}
+
+                                        {/* Optional Badge (e.g., "beta") */}
+                                        {skill.badge && (
+                                            <div className="absolute top-4 right-4">
+                                                <span className="text-[10px] uppercase tracking-widest font-bold text-neon-green bg-neon-green/10 border border-neon-green/20 px-2 py-1 rounded-full">
+                                                    {skill.badge}
+                                                </span>
                                             </div>
+                                        )}
+
+                                        <div className="relative z-10 flex-1 flex flex-col">
+                                            {/* Support for multiple icons or single icon */}
+                                            {Array.isArray(skill.icon) ? (
+                                                <div className="flex gap-2 mb-5">
+                                                    {skill.icon.map((iconElement, index) => (
+                                                        <div key={index} className="w-10 h-10 rounded-lg bg-neutral-900 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300">
+                                                            {iconElement}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <div className="w-10 h-10 rounded-lg bg-neutral-900 flex items-center justify-center border border-white/10 mb-5 group-hover:scale-110 transition-transform duration-300">
+                                                    {skill.icon}
+                                                </div>
+                                            )}
                                             <h3 className="text-lg font-bold text-white mb-2">{skill.name}</h3>
                                             <p className="text-neutral-400 text-sm mb-6 flex-1">{skill.description}</p>
 
