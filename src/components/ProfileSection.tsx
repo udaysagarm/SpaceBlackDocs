@@ -18,21 +18,19 @@ export function ProfileSection() {
                             <div>
                                 <h2 className="text-3xl font-bold text-white font-mono tracking-tight">
                                     <span className="text-neon-green mr-2">&gt;</span>
-                                    Uday
+                                    Uday Meka
                                 </h2>
                                 <p className="text-neutral-400 font-mono mt-2">Creator of Space Black</p>
                             </div>
 
                             <div className="space-y-2 font-mono text-sm text-neutral-300">
-                                <p><span className="text-neutral-500">role:</span> "CS Master's Student"</p>
+                                <p><span className="text-neutral-500">role:</span> "CS Graduate"</p>
                                 <p><span className="text-neutral-500">specialization:</span> "Intelligent Systems"</p>
                                 <p><span className="text-neutral-500">status:</span> <span className="text-neon-green animate-pulse">● Online</span></p>
                             </div>
 
                             <div className="flex flex-wrap gap-4 pt-4">
-                                <a href="https://github.com/udaysagarm" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors">
-                                    @udaysagarm
-                                </a>
+                                <SocialLink href="https://github.com/udaysagarm" icon={<Github className="w-5 h-5" />} label="GitHub" />
                                 <SocialLink href="https://www.linkedin.com/in/udaymeka/" icon={<Linkedin className="w-5 h-5" />} label="LinkedIn" />
                                 <SocialLink href="https://instagram.com/imsagaruday" icon={<Instagram className="w-5 h-5" />} label="Instagram" />
                                 <SocialLink href="https://www.udaysagar.com" icon={<Globe className="w-5 h-5" />} label="Website" />

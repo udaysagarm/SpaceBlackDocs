@@ -33,6 +33,7 @@ b. **Daemon (`daemon.py`)**:
 ### 4. Tool System (`tools/`)
 The capabilities Space Black provides to Ghost.
 - **Native Tools**: File I/O, System info.
+- **Platform Integrations**: Google Workspace (OAuth2 docs, drive, mail), macOS Native Control (AppleScript).
 - **Skills**: Modular integrations (Weather, Telegram).
 - **Browser Engine**: The autonomous browsing capability.
 
@@ -41,7 +42,7 @@ Space Black provides a persistent browser environment for Ghost.
 - **Vision**: **Chrome DevTools Protocol (CDP)** fetches the Accessibility Tree.
 - **Action**: **Playwright** handles interactions.
 - **Persistence**: Session state (cookies, local storage) saved in `brain/vault/`.
-See [**BROWSING.md**](./browsing) for details.
+See [**BROWSING.md**](docs/BROWSING.md) for details.
 
 ---
 

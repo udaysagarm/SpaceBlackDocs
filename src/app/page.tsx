@@ -5,7 +5,9 @@ import { TerminalWindow } from "@/components/TerminalWindow";
 import { TypingEffect } from "@/components/TypingEffect";
 import { TerminalBlock } from "@/components/TerminalBlock";
 import { ProfileSection } from "@/components/ProfileSection";
-import { ArrowRight, Github } from "lucide-react";
+import { BentoGrid } from "@/components/BentoGrid";
+import { InteractiveTabs } from "@/components/InteractiveTabs";
+import { ArrowRight, Github, Shield, Database, Zap } from "lucide-react";
 import { useState } from "react";
 import { clsx } from "clsx";
 import { FloatingStars } from "@/components/FloatingStars";
@@ -59,51 +61,56 @@ $ spaceblack start`;
         </div>
 
         {/* Terminal Install Block */}
-        <div className="mx-auto max-w-xl w-full text-left">
-          <TerminalWindow
-            header={
-              <div className="flex gap-4">
-                <button
-                  onClick={() => setOs("mac")}
-                  className={clsx(
-                    "px-2 py-0.5 rounded text-xs transition-colors",
-                    os === "mac"
-                      ? "bg-neutral-800 text-neon-green font-bold"
-                      : "text-neutral-500 hover:text-neutral-300"
-                  )}
-                >
-                  Mac/Linux
-                </button>
-                <div className="w-[1px] bg-neutral-800 h-4" />
-                <button
-                  onClick={() => setOs("windows")}
-                  className={clsx(
-                    "px-2 py-0.5 rounded text-xs transition-colors",
-                    os === "windows"
-                      ? "bg-neutral-800 text-neon-green font-bold"
-                      : "text-neutral-500 hover:text-neutral-300"
-                  )}
-                >
-                  Windows
-                </button>
-              </div>
-            }
-          >
-            <div className="space-y-4">
-              <div>
-                <p className="opacity-70">Loading source modules...</p>
-                <p className="text-green-500">✔ GitHub Gateway connected</p>
-              </div>
+        <div className="mx-auto max-w-2xl w-full text-left relative">
+          {/* Ambient Glow behind terminal */}
+          <div className="absolute inset-0 bg-neon-green/10 blur-[120px] rounded-full pointer-events-none" />
 
-              <TerminalBlock>
-                {os === "mac" ? macCommands : windowsCommands}
-              </TerminalBlock>
-            </div>
-          </TerminalWindow>
+          <div className="relative z-10">
+            <TerminalWindow
+              header={
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => setOs("mac")}
+                    className={clsx(
+                      "px-2 py-0.5 rounded text-xs transition-colors",
+                      os === "mac"
+                        ? "bg-neutral-800 text-neon-green font-bold"
+                        : "text-neutral-500 hover:text-neutral-300"
+                    )}
+                  >
+                    Mac/Linux
+                  </button>
+                  <div className="w-[1px] bg-neutral-800 h-4" />
+                  <button
+                    onClick={() => setOs("windows")}
+                    className={clsx(
+                      "px-2 py-0.5 rounded text-xs transition-colors",
+                      os === "windows"
+                        ? "bg-neutral-800 text-neon-green font-bold"
+                        : "text-neutral-500 hover:text-neutral-300"
+                    )}
+                  >
+                    Windows
+                  </button>
+                </div>
+              }
+            >
+              <div className="space-y-4">
+                <div>
+                  <p className="opacity-70 font-mono">Loading source modules...</p>
+                  <p className="text-green-500 font-mono">✔ GitHub Gateway connected</p>
+                </div>
+
+                <TerminalBlock>
+                  {os === "mac" ? macCommands : windowsCommands}
+                </TerminalBlock>
+              </div>
+            </TerminalWindow>
+          </div>
         </div>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <Link
             href="/docs"
             className="group flex items-center justify-center gap-2 rounded-lg bg-neon-green px-6 py-3 text-sm font-semibold text-black transition-all hover:bg-neon-green/90 hover:shadow-[0_0_20px_-5px_var(--neon-green)]"
@@ -125,20 +132,66 @@ $ spaceblack start`;
           <button
             onClick={() => setShowStars(!showStars)}
             className={clsx(
-              "flex items-center justify-center gap-2 rounded-lg border px-6 py-3 text-sm font-semibold transition-all hover:bg-neutral-800",
+              "flex items-center justify-center gap-2 rounded-lg border px-6 py-3 text-sm font-semibold font-mono transition-all hover:bg-neon-green/10 shadow-[0_0_15px_-3px_var(--neon-green)]",
               showStars
-                ? "border-neon-green text-neon-green shadow-[0_0_15px_-3px_var(--neon-green)]"
-                : "border-neutral-800 text-neutral-300 hover:border-neutral-700 hover:text-white"
+                ? "border-neon-green text-neon-green"
+                : "border-neutral-700 text-neutral-400 hover:border-neon-green hover:text-neon-green"
             )}
           >
-            Feel like stars
+            [ {showStars ? "Space Mode: ON" : "Ignite Stars"} ]
           </button>
         </div>
       </div>
 
       {showStars && <FloatingStars />}
 
-      {/* Profile Section */}
+      {/* 2. Bento Box Skills Grid with Ambient Light */}
+      <div className="relative w-full">
+        {/* Ambient Glow behind Bento Box */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-green-600/5 blur-[120px] rounded-full pointer-events-none" />
+        <BentoGrid />
+      </div>
+
+      {/* 3. Interactive Use-Case Tabs */}
+      <InteractiveTabs />
+
+      {/* 4. Philosophy Section */}
+      <section className="w-full max-w-5xl mx-auto my-24 px-4 text-center">
+        <h2 className="text-3xl font-bold tracking-tight text-white mb-12">
+          Why Space Black?
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="space-y-4 p-8 rounded-2xl bg-neutral-900/40 border border-neutral-800/50 hover:bg-neutral-900/80 transition-all duration-300 hover:-translate-y-1">
+            <div className="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-6">
+              <Shield className="w-7 h-7 text-emerald-400" />
+            </div>
+            <h3 className="font-bold text-white text-lg">Local-First Security</h3>
+            <p className="text-neutral-400 text-sm leading-relaxed">
+              Your keys live in your .env. No cloud servers. No data leaks. Complete peace of mind.
+            </p>
+          </div>
+          <div className="space-y-4 p-8 rounded-2xl bg-neutral-900/40 border border-neutral-800/50 hover:bg-neutral-900/80 transition-all duration-300 hover:-translate-y-1">
+            <div className="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mx-auto mb-6">
+              <Database className="w-7 h-7 text-blue-400" />
+            </div>
+            <h3 className="font-bold text-white text-lg">Transparent Memory</h3>
+            <p className="text-neutral-400 text-sm leading-relaxed">
+              No heavy vector databases. Ghost's soul and memories live entirely within editable Markdown files.
+            </p>
+          </div>
+          <div className="space-y-4 p-8 rounded-2xl bg-neutral-900/40 border border-neutral-800/50 hover:bg-neutral-900/80 transition-all duration-300 hover:-translate-y-1">
+            <div className="w-14 h-14 rounded-xl bg-amber-500/10 flex items-center justify-center mx-auto mb-6">
+              <Zap className="w-7 h-7 text-amber-400" />
+            </div>
+            <h3 className="font-bold text-white text-lg">Lightning Fast</h3>
+            <p className="text-neutral-400 text-sm leading-relaxed">
+              Runs directly in your terminal with zero UI latency. Instant feedback and interaction.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Profile Section */}
       <ProfileSection />
     </main>
   );
