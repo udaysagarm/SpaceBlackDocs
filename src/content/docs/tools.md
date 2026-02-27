@@ -3,10 +3,14 @@
 **Space Black** provides these tools to **Ghost** (the agent). Ghost uses them autonomously to complete your requests.
 
 ### 🔐 Vault (Secure Storage)
-Manage sensitive credentials, user specifics, and background data securely.
-*   `get_secret(key)`: Retrieve a securely stored string.
-*   `set_secret(key, value)`: Save a string (local only, git-ignored). Useful for persistent tokens or long-term private configs.
-*   `list_secrets()`: See what keys are currently stored in the Vault.
+Manage sensitive credentials, user specifics, and background data securely. The Vault prioritizes the host OS Native Password Storage system (macOS Keychain, Windows Credential Manager, Linux Secret Service), with an additional Local Encrypted File Vault (`secrets.enc`) as a fallback.
+
+*   `initialize_local_vault(passphrase)`: Create a new encrypted local vault with a secret phrase.
+*   `unlock_local_vault(passphrase)`: Unlock the encrypted local vault for the current session.
+*   `lock_local_vault()`: Lock the encrypted local vault, clearing decryption keys from memory.
+*   `get_secret(key)`: Retrieve a securely stored string, checking OS Keyring first, then the local vault.
+*   `set_secret(key, value, store_in_local_vault=False)`: Save a string securely to the OS Keyring (default) or Local Vault.
+*   `list_secrets()`: See what keys are currently stored in the unlocked Local Vault (OS Keyring keys are hidden by default for security).
 
 ### 🌐 Autonomous Web Browsing
 Space Black gives Ghost a full headless browser to interact with the web.
@@ -17,7 +21,7 @@ Space Black gives Ghost a full headless browser to interact with the web.
 *   `browser_get_state()`: Get the Accessibility Tree (Ghost's "vision").
 *   `browser_screenshot()`: Save a snapshot.
 
-**See [BROWSING.md](docs/BROWSING.md) for the full guide on Browsing capabilities.**
+**See [BROWSING.md](./BROWSING.md) for the full guide on Browsing capabilities.**
 
 ### 🛠️ System Tools
 Core capabilities for interacting with your machine.
@@ -84,6 +88,7 @@ When the Google skill is enabled via standard OAuth2, Ghost gains access to the 
 *   `drive_act(action, ...)`: Upload, download, move, share, and list Drive files.
 *   `docs_act(action, ...)`: Create, append, and read Google Docs.
 *   `sheets_act(action, ...)`: Create, read, and write cell ranges to Google Sheets.
+*   `wallet_act(action, ...)`: Create and manage Google Wallet passes (classes and objects).
 
 ### macOS Native Control
 When running on macOS (with the skill enabled), Ghost can control local applications via AppleScript using a single endpoint:
@@ -92,6 +97,8 @@ When running on macOS (with the skill enabled), Ghost can control local applicat
 ### Developer & Service APIs
 *   `github_act(action, ...)`: Direct control over GitHub via API. Can read repos, manage issues, create branches, and directly manipulate code files.
 *   `stripe_act(action, ...)`: Secure gateway to the Stripe API. Check accounts, list invoices, manage customers, and generate checkout sessions.
+*   `paypal_act(action, ...)`: Access the PayPal Developer API to check balances, securely send payouts (with explicit console confirmation required), and draft invoices.
 *   `discord_act(action, ...)`: Background Discord bot controller. Can send messages, list guild members, read channels, and manage DMs.
+*   `slack_act(action, ...)`: Background Socket Mode Slack bot. Send DM/Channel messages, read histories, and react to threads.
 *   `get_current_weather(location)`: Fetches real-time weather from OpenWeather.
 *   `send_telegram_message(message)`: Broadcasts a message to the user via the Telegram Gateway.

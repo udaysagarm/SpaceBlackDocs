@@ -22,11 +22,8 @@ $ git clone https://github.com/udaysagarm/SpaceBlack.git
 # 2. Enter the void
 $ cd SpaceBlack
 
-# 3. First Time Setup (Run Once)
-$ ./spaceblack onboard
-
-# 4. Daily Usage
-$ ./spaceblack start`;
+# 3. Launch Ghost
+$ ./ghost start`;
 
   const windowsCommands = `# 1. Clone the repository
 $ git clone https://github.com/udaysagarm/SpaceBlack.git
@@ -34,11 +31,8 @@ $ git clone https://github.com/udaysagarm/SpaceBlack.git
 # 2. Enter the void
 $ cd SpaceBlack
 
-# 3. First Time Setup (Run Once)
-$ spaceblack onboard
-
-# 4. Daily Usage
-$ spaceblack start`;
+# 3. Launch Ghost
+$ ghost start`;
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-900/50 via-background to-background">

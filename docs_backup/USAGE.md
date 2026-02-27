@@ -1,12 +1,12 @@
 # Space Black User Manual
 
 ## Running Ghost
-To wake up **Ghost** (the agent), you run the **Space Black** executable.
+To wake up **Ghost** (the agent), use the **`ghost`** CLI.
 
 ### Interactive Mode (TUI)
 Run this for your daily dev work.
 ```bash
-./spaceblack start
+./ghost start
 ```
 - **Interface**: Full terminal UI where you chat with Ghost.
 - **Controls**: Mouse supported. `Ctrl+C` to exit.
@@ -15,7 +15,7 @@ Run this for your daily dev work.
 ### Headless Mode (Daemon)
 Run this on servers or for background monitoring.
 ```bash
-./spaceblack daemon
+./ghost daemon
 ```
 - **Interface**: None (Silent).
 - **Ghost's Role**: Background worker. Checks `SCHEDULE.json` every 60s.
@@ -35,7 +35,7 @@ Ghost is designed to be conversational but precise.
 Ghost can surf the web for you.
 - "Go to github.com and check the trending repos."
 - "Read the documentation for LangGraph and summarize the core concepts."
-See [**Browsing Guide**](docs/BROWSING.md) for details.
+See [**Browsing Guide**](./BROWSING.md) for details.
 
 ### 4. Native App & Workspace Integrations
 Ghost can control your local apps and cloud workspace.
@@ -53,6 +53,12 @@ Ghost has a persistent memory.
 - **Short-term**: Remembers the current conversation.
 - **Long-term**: Stores facts in `brain/MEMORY.md`.
 - **User Profile**: Learns your preferences in `brain/USER.md`.
+
+### 7. Voice Mode
+Ghost integrates native Speech-to-Text and Text-to-Speech using cloud APIs (Google, OpenAI, Groq, Mistral, xAI).
+- **Activate**: Click the "🎙️ Speak" button in the TUI toolbar OR press `Ctrl+V` on your keyboard anywhere in the app to record for 5 seconds.
+- **Auto-Speak**: Toggle the "Auto-Speak" switch on the toolbar to have Ghost narrate its responses.
+- **Configuration**: Use the `/config` UI to select dedicated Voice Providers (`tts-1`, `gemini-2.5-flash`, etc.) separate from your chat models.
 
 ---
 

@@ -141,6 +141,52 @@ Manage customers, check balances, list prices, and create checkout sessions secu
     - "Generate a checkout session link for the 'Premium' tier price."
     - "Create a new customer named Alice."
 
-## 9. Spotify (Planned)
-Control music playback.
-- **Status**: 🚧 Coming Soon
+## 9. PayPal API (Payments & Payouts)
+Manage your PayPal account by checking balances, sending payouts natively with explicit security confirmations, and generating invoices via the PayPal Developer API.
+
+- **Status**: ✅ Implemented
+- **Config**: Configurable via the Terminal UI (Settings -> Skills).
+```json
+"skills": {
+    "paypal": {
+        "enabled": true,
+        "client_id": "YOUR_CLIENT_ID",
+        "client_secret": "YOUR_SECRET",
+        "environment": "sandbox"
+    }
+}
+```
+- **Usage**:
+    - "Check my PayPal balance."
+    - "Create a test invoice for test@example.com."
+    - "Send a $5 payout to john.doe@example.com."
+
+## 10. Slack Bot
+Deploy a Socket Mode Slack Bot that you can interact with, and allow the agent to read channels, answer questions via an Intelligent Classifier, and send DMs. Automatically secures Vault data based on channel context.
+
+- **Status**: ✅ Implemented
+- **Config**: Configurable via the Terminal UI (Settings -> Skills).
+```json
+"skills": {
+    "slack": {
+        "enabled": true,
+        "bot_token": "xoxb-YOUR_BOT_TOKEN",
+        "app_token": "xapp-YOUR_APP_TOKEN",
+        "allowed_user_id": "U1234567"
+    }
+}
+```
+- **Usage**:
+    - "Summarize the last 25 messages in the #general channel."
+    - "Send a DM to Bob telling him the deployment is done."
+    - "What is the status of the Jira ticket mentioned above?"
+
+## 11. Voice Interactions
+Talk to the agent using high-quality multimodal APIs from Google Gemini or OpenAI without needing heavy local models.
+
+- **Status**: ✅ Implemented
+- **Config**: Relies on the main AI provider configuration in `config.json`.
+- **Usage**:
+    - Click the "🎙️ Speak" button in the TUI to dictate prompts.
+    - Enable the "Auto-Speak" toggle in TUI for the agent to talk back to you using native TTS endpoints.
+

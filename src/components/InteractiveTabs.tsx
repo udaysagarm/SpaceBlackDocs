@@ -41,7 +41,7 @@ $ ghost "Deploy the latest changes to staging"
 > running: \`git pull origin main\`
 > running: \`npm install\`
 > running: \`npm run build\`
-> running: \`pm2 restart spaceblack-app\`
+> running: \`pm2 restart ghost-app\`
 
 ✔ Deployment complete in 42s.`,
     },
