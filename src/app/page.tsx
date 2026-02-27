@@ -7,7 +7,7 @@ import { TerminalBlock } from "@/components/TerminalBlock";
 import { ProfileSection } from "@/components/ProfileSection";
 import { BentoGrid } from "@/components/BentoGrid";
 import { InteractiveTabs } from "@/components/InteractiveTabs";
-import { ArrowRight, Github, Shield, Database, Zap } from "lucide-react";
+import { ArrowRight, Github, Shield, Database, Zap, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { clsx } from "clsx";
 import { FloatingStars } from "@/components/FloatingStars";
@@ -15,27 +15,32 @@ import { FloatingStars } from "@/components/FloatingStars";
 export default function Home() {
   const [os, setOs] = useState<"mac" | "linux" | "windows">("mac");
   const [showStars, setShowStars] = useState(true);
+  const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
 
-  const macCommands = `# 1. Install Space Black (one command)
-$ curl -fsSL https://spaceblack.info/install.sh | bash
+  type CommandLine = { label: string; cmd: string };
 
-# 2. Launch Ghost
-$ ghost start`;
+  const commandSets: Record<"mac" | "linux" | "windows", CommandLine[]> = {
+    mac: [
+      { label: "Install Space Black", cmd: "curl -fsSL https://spaceblack.info/install.sh | bash" },
+      { label: "Launch Ghost", cmd: "ghost start" },
+    ],
+    linux: [
+      { label: "Install Space Black", cmd: "curl -fsSL https://spaceblack.info/install.sh | bash" },
+      { label: "Launch Ghost", cmd: "ghost start" },
+    ],
+    windows: [
+      { label: "Clone the repository", cmd: "git clone https://github.com/udaysagarm/SpaceBlack.git && cd SpaceBlack" },
+      { label: "Launch Ghost", cmd: "ghost start" },
+    ],
+  };
 
-  const linuxCommands = `# 1. Install Space Black (one command)
-$ curl -fsSL https://spaceblack.info/install.sh | bash
+  const currentCommands = commandSets[os];
 
-# 2. Launch Ghost
-$ ghost start`;
-
-  const windowsCommands = `# 1. Clone the repository
-$ git clone https://github.com/udaysagarm/SpaceBlack.git
-$ cd SpaceBlack
-
-# 2. Launch Ghost
-$ ghost start`;
-
-  const currentCommands = os === "mac" ? macCommands : os === "linux" ? linuxCommands : windowsCommands;
+  const handleCopy = async (cmd: string, idx: number) => {
+    await navigator.clipboard.writeText(cmd);
+    setCopiedIdx(idx);
+    setTimeout(() => setCopiedIdx(null), 2000);
+  };
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-900/50 via-background to-background">
@@ -91,9 +96,30 @@ $ ghost start`;
                   <p className="text-green-500 font-mono">✔ GitHub Gateway connected</p>
                 </div>
 
-                <pre className="text-sm md:text-base text-neutral-300 font-mono whitespace-pre-wrap">
-                  {currentCommands}
-                </pre>
+                <div className="space-y-3">
+                  {currentCommands.map((item, idx) => (
+                    <div key={`${os}-${idx}`} className="group/cmd">
+                      <p className="text-neutral-500 font-mono text-xs mb-1"># {item.label}</p>
+                      <div className="flex items-center justify-between gap-3 rounded-lg bg-white/[0.03] border border-neutral-800/50 px-4 py-2.5 hover:border-neutral-700/70 transition-colors">
+                        <code className="text-sm md:text-base text-neutral-200 font-mono truncate">
+                          <span className="text-neon-green mr-2 select-none">$</span>
+                          {item.cmd}
+                        </code>
+                        <button
+                          onClick={() => handleCopy(item.cmd, idx)}
+                          className="shrink-0 text-neutral-500 hover:text-neon-green transition-all opacity-0 group-hover/cmd:opacity-100 focus:opacity-100"
+                          aria-label={`Copy: ${item.cmd}`}
+                        >
+                          {copiedIdx === idx ? (
+                            <Check className="h-4 w-4 text-neon-green" />
+                          ) : (
+                            <Copy className="h-4 w-4" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </TerminalWindow>
           </div>
