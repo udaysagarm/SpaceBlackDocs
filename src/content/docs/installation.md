@@ -92,38 +92,16 @@ See [**Packaging Guide**](./PACKAGING.md) for building packages from source.
 
 ---
 
-## Hosting the Install Script
+## Download Links
 
-To make `curl -fsSL https://spaceblack.info/install.sh | bash` work, you need to host the `install.sh` file on your domain. Two options:
+The latest packages are available on [GitHub Releases](https://github.com/udaysagarm/SpaceBlack/releases/latest):
 
-### Option A: Direct hosting
-Upload `install.sh` to your web server so that `https://spaceblack.info/install.sh` returns the raw script with `Content-Type: text/plain`.
+| Package | Direct Download |
+|---------|----------------|
+| `.deb` (Debian/Ubuntu) | [spaceblack_1.0.0_all.deb](https://github.com/udaysagarm/SpaceBlack/releases/latest/download/spaceblack_1.0.0_all.deb) |
+| `.rpm` (Fedora/RHEL)   | [spaceblack-1.0.0-1.noarch.rpm](https://github.com/udaysagarm/SpaceBlack/releases/latest/download/spaceblack-1.0.0-1.noarch.rpm) |
 
-### Option B: Redirect to GitHub
-Configure your web server to redirect `https://spaceblack.info/install.sh` to the raw GitHub URL:
-```
-https://raw.githubusercontent.com/udaysagarm/SpaceBlack/main/install.sh
-```
-
-For example, with Nginx:
-```nginx
-location = /install.sh {
-    return 302 https://raw.githubusercontent.com/udaysagarm/SpaceBlack/main/install.sh;
-}
-```
-
-Or with Vercel/Netlify `_redirects`:
-```
-/install.sh https://raw.githubusercontent.com/udaysagarm/SpaceBlack/main/install.sh 200
-```
-
-### GitHub Releases Setup
-For the installer to download `.deb`/`.rpm` packages automatically, create a [GitHub Release](https://github.com/udaysagarm/SpaceBlack/releases/new) and attach the built packages:
-1.  Build packages: `bash packaging/build_packages.sh`
-2.  Go to GitHub → Releases → "Create a new release"
-3.  Tag: `v1.0.0`
-4.  Upload `packaging/dist/spaceblack_1.0.0_all.deb` and `packaging/dist/spaceblack-1.0.0-1.noarch.rpm`
-5.  Publish the release
+See [**Packaging Guide**](./PACKAGING.md) for building packages from source.
 
 ---
 
