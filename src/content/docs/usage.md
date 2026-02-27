@@ -12,6 +12,13 @@ Run this for your daily dev work.
 - **Controls**: Mouse supported. `Ctrl+C` to exit.
 - **Ghost's Role**: Pair programmer, researcher, and assistant.
 
+### Updating
+Keep Ghost up to date with the latest features and fixes:
+```bash
+./ghost update
+```
+This pulls the latest code and updates dependencies. For package installs (`.deb`/`.rpm`), re-run `curl -fsSL https://spaceblack.info/install.sh | bash`.
+
 ### Headless Mode (Daemon)
 Run this on servers or for background monitoring.
 ```bash
@@ -64,4 +71,5 @@ Ghost integrates native Speech-to-Text and Text-to-Speech using cloud APIs (Goog
 
 ## Keyboard Shortcuts (TUI)
 - **Enter**: Send message to Ghost.
+- **Ctrl+V**: Record voice input (5 seconds).
 - **Ctrl+C**: Quit Space Black.

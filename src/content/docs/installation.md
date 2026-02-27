@@ -16,26 +16,25 @@ Follow these steps to install and configure Space Black on your system.
 
 ## Option 1: One-Line Install (Recommended)
 
-The fastest way to get started. This script detects your OS, downloads the right package (or clones from source), and sets everything up.
+The fastest way to get started on **macOS and Linux**. This script detects your OS, downloads the right package (or clones from source), and sets everything up.
 
-**Via spaceblack.info:**
 ```bash
 curl -fsSL https://spaceblack.info/install.sh | bash
 ```
 
-**Via GitHub (alternative):**
-```bash
-curl -fsSL https://raw.githubusercontent.com/udaysagarm/SpaceBlack/main/install.sh | bash
-```
+> **Alternative** (via GitHub directly):
+> ```bash
+> curl -fsSL https://raw.githubusercontent.com/udaysagarm/SpaceBlack/main/install.sh | bash
+> ```
 
 The installer will:
 1.  Detect your operating system.
-2.  On Debian/Ubuntu: download and install the `.deb` package.
-3.  On Fedora/RHEL: download and install the `.rpm` package.
-4.  On macOS or other systems: clone the repository to `~/SpaceBlack`.
+2.  On **Debian/Ubuntu**: download and install the `.deb` package from [GitHub Releases](https://github.com/udaysagarm/SpaceBlack/releases).
+3.  On **Fedora/RHEL**: download and install the `.rpm` package.
+4.  On **macOS** or other systems: clone the repository to `~/SpaceBlack`.
 5.  Print instructions to launch Ghost.
 
-After install, run:
+After install, launch the agent:
 ```bash
 ghost start
 ```
@@ -51,11 +50,13 @@ cd SpaceBlack
 ```
 
 ### 2. Launch Ghost
-```install-tabs
-[MAC]
+**Mac/Linux**
+```bash
 ./ghost start
+```
 
-[WINDOWS]
+**Windows (PowerShell)**
+```powershell
 ghost start
 ```
 
@@ -72,17 +73,29 @@ Subsequent runs skip setup and launch instantly.
 
 ## Option 3: Linux Packages (.deb / .rpm)
 
-Pre-built packages are available for Debian/Ubuntu and Fedora/RHEL systems. Download from [GitHub Releases](https://github.com/udaysagarm/SpaceBlack/releases).
+Pre-built packages are available on [GitHub Releases](https://github.com/udaysagarm/SpaceBlack/releases).
 
 ### Debian / Ubuntu
 ```bash
-sudo dpkg -i spaceblack_1.0.0_all.deb
+# Download
+curl -fsSL -o spaceblack.deb https://github.com/udaysagarm/SpaceBlack/releases/latest/download/spaceblack_1.0.0_all.deb
+
+# Install
+sudo dpkg -i spaceblack.deb
+
+# Launch
 ghost start
 ```
 
 ### Fedora / RHEL
 ```bash
-sudo rpm -i spaceblack-1.0.0-1.noarch.rpm
+# Download
+curl -fsSL -o spaceblack.rpm https://github.com/udaysagarm/SpaceBlack/releases/latest/download/spaceblack-1.0.0-1.noarch.rpm
+
+# Install
+sudo rpm -i spaceblack.rpm
+
+# Launch
 ghost start
 ```
 
@@ -92,16 +105,32 @@ See [**Packaging Guide**](./PACKAGING.md) for building packages from source.
 
 ---
 
-## Download Links
+## Updating
 
-The latest packages are available on [GitHub Releases](https://github.com/udaysagarm/SpaceBlack/releases/latest):
+To update an existing installation to the latest version:
 
-| Package | Direct Download |
-|---------|----------------|
-| `.deb` (Debian/Ubuntu) | [spaceblack_1.0.0_all.deb](https://github.com/udaysagarm/SpaceBlack/releases/latest/download/spaceblack_1.0.0_all.deb) |
-| `.rpm` (Fedora/RHEL)   | [spaceblack-1.0.0-1.noarch.rpm](https://github.com/udaysagarm/SpaceBlack/releases/latest/download/spaceblack-1.0.0-1.noarch.rpm) |
+**Source install (macOS / Linux / Windows):**
+```bash
+./ghost update
+```
+This pulls the latest code from GitHub and updates any changed dependencies.
 
-See [**Packaging Guide**](./PACKAGING.md) for building packages from source.
+**Package install (.deb / .rpm):**
+Re-run the installer to download the latest package:
+```bash
+curl -fsSL https://spaceblack.info/install.sh | bash
+```
+
+---
+
+## CLI Reference
+
+| Command | Description |
+|---------|-------------|
+| `ghost start` | Launch Ghost (auto-setup on first run) |
+| `ghost update` | Pull latest code & update dependencies |
+| `ghost daemon` | Start the background daemon |
+| `ghost help` | Show available commands |
 
 ---
 
@@ -116,4 +145,4 @@ ANTHROPIC_API_KEY=your_key_here
 BRAVE_API_KEY=your_key_here  # Optional
 ```
 
-Once the `.env` file is created, running `python main.py` will skip the wizard and launch the TUI directly.
+Once the `.env` file is created, running `ghost start` will skip the wizard and launch the TUI directly.
