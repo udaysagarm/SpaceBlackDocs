@@ -13,26 +13,29 @@ import { clsx } from "clsx";
 import { FloatingStars } from "@/components/FloatingStars";
 
 export default function Home() {
-  const [os, setOs] = useState<"mac" | "windows">("mac");
+  const [os, setOs] = useState<"mac" | "linux" | "windows">("mac");
   const [showStars, setShowStars] = useState(true);
 
-  const macCommands = `# 1. Clone the repository
-$ git clone https://github.com/udaysagarm/SpaceBlack.git
+  const macCommands = `# 1. Install Space Black (one command)
+$ curl -fsSL https://spaceblack.info/install.sh | bash
 
-# 2. Enter the void
-$ cd SpaceBlack
+# 2. Launch Ghost
+$ ghost start`;
 
-# 3. Launch Ghost
-$ ./ghost start`;
+  const linuxCommands = `# 1. Install Space Black (one command)
+$ curl -fsSL https://spaceblack.info/install.sh | bash
+
+# 2. Launch Ghost
+$ ghost start`;
 
   const windowsCommands = `# 1. Clone the repository
 $ git clone https://github.com/udaysagarm/SpaceBlack.git
-
-# 2. Enter the void
 $ cd SpaceBlack
 
-# 3. Launch Ghost
+# 2. Launch Ghost
 $ ghost start`;
+
+  const currentCommands = os === "mac" ? macCommands : os === "linux" ? linuxCommands : windowsCommands;
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-900/50 via-background to-background">
@@ -63,29 +66,22 @@ $ ghost start`;
             <TerminalWindow
               header={
                 <div className="flex gap-4">
-                  <button
-                    onClick={() => setOs("mac")}
-                    className={clsx(
-                      "px-2 py-0.5 rounded text-xs transition-colors",
-                      os === "mac"
-                        ? "bg-neutral-800 text-neon-green font-bold"
-                        : "text-neutral-500 hover:text-neutral-300"
-                    )}
-                  >
-                    Mac/Linux
-                  </button>
-                  <div className="w-[1px] bg-neutral-800 h-4" />
-                  <button
-                    onClick={() => setOs("windows")}
-                    className={clsx(
-                      "px-2 py-0.5 rounded text-xs transition-colors",
-                      os === "windows"
-                        ? "bg-neutral-800 text-neon-green font-bold"
-                        : "text-neutral-500 hover:text-neutral-300"
-                    )}
-                  >
-                    Windows
-                  </button>
+                  {(["mac", "linux", "windows"] as const).map((tab, i) => (
+                    <div key={tab} className="flex items-center gap-4">
+                      {i > 0 && <div className="w-[1px] bg-neutral-800 h-4" />}
+                      <button
+                        onClick={() => setOs(tab)}
+                        className={clsx(
+                          "px-2 py-0.5 rounded text-xs transition-colors",
+                          os === tab
+                            ? "bg-neutral-800 text-neon-green font-bold"
+                            : "text-neutral-500 hover:text-neutral-300"
+                        )}
+                      >
+                        {tab === "mac" ? "macOS" : tab === "linux" ? "Linux" : "Windows"}
+                      </button>
+                    </div>
+                  ))}
                 </div>
               }
             >
@@ -95,9 +91,9 @@ $ ghost start`;
                   <p className="text-green-500 font-mono">✔ GitHub Gateway connected</p>
                 </div>
 
-                <TerminalBlock>
-                  {os === "mac" ? macCommands : windowsCommands}
-                </TerminalBlock>
+                <pre className="text-sm md:text-base text-neutral-300 font-mono whitespace-pre-wrap">
+                  {currentCommands}
+                </pre>
               </div>
             </TerminalWindow>
           </div>
