@@ -58,7 +58,7 @@ export default function Home() {
           <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto">
             The terminal operating system for autonomous agents.
             <br className="hidden md:inline" />{" "}
-            <span className="text-neutral-500">Ghost is your ai agent.</span>
+            <span className="text-neutral-500">Summon the ghost agent.</span>
           </p>
         </div>
 

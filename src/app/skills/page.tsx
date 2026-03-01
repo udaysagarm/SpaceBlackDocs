@@ -2,7 +2,7 @@ import Link from "next/link";
 import {
     ArrowLeft, Terminal, Lock, Search, Folder, Clock, Brain, Cloud
 } from "lucide-react";
-import { SiGithub, SiStripe, SiGoogle, SiTelegram, SiDiscord, SiApple } from "react-icons/si";
+import { SiGithub, SiStripe, SiPaypal, SiGoogle, SiTelegram, SiDiscord, SiApple } from "react-icons/si";
 import { PlaywrightLogo } from "../../components/icons/PlaywrightLogo";
 import { BraveLogo } from "../../components/icons/BraveLogo";
 import { DuckDuckGoLogo } from "../../components/icons/DuckDuckGoLogo";
@@ -27,6 +27,13 @@ export default function SkillsPage() {
                     description: "Manage customers, check balances, list prices, and generate checkout session links directly from the CLI.",
                     config: "Requires STRIPE_SECRET_KEY in .env",
                     docs: "/docs/skills#stripe"
+                },
+                {
+                    name: "PayPal Integration",
+                    icon: <SiPaypal className="w-6 h-6 text-[#00457C]" />,
+                    description: "Create and manage invoices, send payouts, and handle billing agreements.",
+                    config: "Requires PAYPAL_CLIENT_ID and SECRET",
+                    docs: "/docs/skills#paypal"
                 },
                 {
                     name: "Google Workspace",
