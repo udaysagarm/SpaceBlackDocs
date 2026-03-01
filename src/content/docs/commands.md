@@ -27,6 +27,11 @@ ghost update
 ghost daemon
 ```
 
+### Help
+```bash
+ghost --help
+```
+
 ---
 
 ## Linux (Debian / Ubuntu)
@@ -133,14 +138,46 @@ cd SpaceBlack
 .\ghost.bat daemon
 ```
 
+### Help
+```powershell
+.\ghost.bat --help
+```
+
 ---
 
 ## All Commands
 
 | Command | macOS / Linux | Windows |
 |---------|---------------|---------|
-| Install | `curl -fsSL https://spaceblack.info/install.sh` | `git clone ... && cd SpaceBlack` |
 | Start | `ghost start` | `.\ghost.bat start` |
 | Update | `ghost update` | `.\ghost.bat update` |
 | Daemon | `ghost daemon` | `.\ghost.bat daemon` |
-| Help | `ghost help` | `.\ghost.bat help` |
+| Help | `ghost --help` | `.\ghost.bat --help` |
+| Version | `ghost --version` | `.\ghost.bat --version` |
+
+## ghost --help Output
+
+```
+  Ghost — The AI Agent on Space Black
+  Version: 1.0.0
+
+  Usage: ghost <command>
+
+  Commands:
+    start       Launch the Ghost agent TUI (auto-setup on first run)
+    update      Pull latest code and update dependencies
+    daemon      Run Ghost as a background service
+    help        Show this help message
+
+  Options:
+    --help      Show this help message
+    --version   Show version number
+
+  Examples:
+    ghost start           Launch the interactive TUI
+    ghost update          Update to the latest version
+    ghost daemon          Start the background daemon
+
+  Docs:   https://spaceblack.info/docs
+  GitHub: https://github.com/udaysagarm/SpaceBlack
+```
