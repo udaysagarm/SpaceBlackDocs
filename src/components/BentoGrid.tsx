@@ -36,30 +36,21 @@ export function BentoGrid() {
                         </div>
                     </div>
 
-                    {/* Card 2 (Medium - Stripe) */}
+                    {/* Card 2 (Medium - Payments) */}
                     <div className="rounded-2xl bg-neutral-950 border border-white/10 p-6 flex flex-col justify-between group hover:-translate-y-1 hover:border-neon-green/50 hover:shadow-[0_0_15px_-3px_var(--neon-green)] transition-all duration-300 relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                         <div className="relative z-10">
-                            <div className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center border border-white/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                                <SiStripe className="w-6 h-6 text-[#635BFF]" />
+                            <div className="flex gap-2 mb-4">
+                                <div className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300">
+                                    <SiStripe className="w-6 h-6 text-[#635BFF]" />
+                                </div>
+                                <div className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300 sm:delay-75">
+                                    <SiPaypal className="w-5 h-5 text-[#00457C]" />
+                                </div>
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2">Stripe Integration</h3>
+                            <h3 className="text-lg font-bold text-white mb-2">Payment Integrations</h3>
                             <p className="text-neutral-400 text-sm">
                                 Check balances and create checkout sessions directly from the CLI.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Card 3 (Medium - PayPal) */}
-                    <div className="rounded-2xl bg-neutral-950 border border-white/10 p-6 flex flex-col justify-between group hover:-translate-y-1 hover:border-neon-green/50 hover:shadow-[0_0_15px_-3px_var(--neon-green)] transition-all duration-300 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#00457C]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                        <div className="relative z-10">
-                            <div className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center border border-white/10 mb-4 group-hover:scale-110 transition-transform duration-300">
-                                <SiPaypal className="w-6 h-6 text-[#00457C]" />
-                            </div>
-                            <h3 className="text-lg font-bold text-white mb-2">PayPal Integration</h3>
-                            <p className="text-neutral-400 text-sm">
-                                Create invoices, send payouts, and handle billing agreements natively.
                             </p>
                         </div>
                     </div>
